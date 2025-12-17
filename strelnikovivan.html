@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новогодний привет</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a2e38 0%, #1a5f7a 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .greeting-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        h1 {
+            font-family: 'Marck Script', cursive;
+            font-size: 3.5rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #4ECDC4;
+            margin: 20px 0;
+            text-shadow: 0 0 15px rgba(78, 205, 196, 0.7);
+            letter-spacing: 1px;
+        }
+        
+        .message {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #E0F7FA;
+        }
+        
+        .year {
+            font-size: 5rem;
+            color: #FF6B6B;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+            animation: pulse 2s infinite alternate;
+        }
+        
+        .decoration {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .ornament {
+            width: 60px;
+            height: 60px;
+            background: #FF6B6B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+        }
+        
+        .ornament:nth-child(2) {
+            background: #4ECDC4;
+            box-shadow: 0 0 15px rgba(78, 205, 196, 0.7);
+        }
+        
+        .ornament:nth-child(3) {
+            background: #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        
+        .wishes {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            border-left: 4px solid #FFD700;
+        }
+        
+        /* Снежинки */
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            z-index: 1;
+        }
+        
+        /* Елка */
+        .tree {
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            width: 150px;
+            height: 200px;
+            z-index: 2;
+        }
+        
+        .tree-part {
+            position: absolute;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 70px solid #2E7D32;
+        }
+        
+        .tree-part:nth-child(1) {
+            bottom: 0;
+        }
+        
+        .tree-part:nth-child(2) {
+            bottom: 40px;
+            border-bottom-color: #388E3C;
+            width: 80px;
+            left: -40px;
+        }
+        
+        .tree-part:nth-child(3) {
+            bottom: 80px;
+            border-bottom-color: #4CAF50;
+            width: 60px;
+            left: -30px;
+        }
+        
+        .tree-trunk {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background: #5D4037;
+            bottom: 0;
+            left: -10px;
+            z-index: -1;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .name { font-size: 2.2rem; }
+            .year { font-size: 4rem; }
+            .greeting-box { padding: 25px; }
+            .tree { display: none; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; }
+            .name { font-size: 1.8rem; }
+            .year { font-size: 3rem; }
+            .message { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="greeting-box">
+            <h1>С Новым Годом!</h1>
+            <div class="message">Дорогой(ая)</div>
+            <div class="name">Иван Стрельников</div>
+            <div class="message">От всего сердца желаем вам счастливого Нового года!</div>
+            
+            <div class="decoration">
+                <div class="ornament">🎁</div>
+                <div class="ornament">🎄</div>
+                <div class="ornament">⭐</div>
+            </div>
+            
+            <div class="year">2025</div>
+            
+            <div class="wishes">
+                Пусть новый год принесёт вам радость, успех во всех начинаниях, 
+                крепкое здоровье и исполнение самых заветных желаний!
+            </div>
+        </div>
+        
+        <div class="tree">
+            <div class="tree-part"></div>
+            <div class="tree-part"></div>
+            <div class="tree-part"></div>
+            <div class="tree-trunk"></div>
+        </div>
+    </div>
+
+    <script>
+        // Создание снежинок
+        function createSnowflakes() {
+            const snowflakesContainer = document.body;
+            const snowflakeCount = 50;
+            
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                
+                // Случайный размер
+                const size = Math.random() * 10 + 5;
+                snowflake.style.width = `${size}px`;
+                snowflake.style.height = `${size}px`;
+                
+                // Случайная позиция
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.top = `-10px`;
+                
+                // Случайная прозрачность
+                snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+                
+                // Случайная длительность анимации
+                const duration = Math.random() * 10 + 10;
+                snowflake.style.animation = `fall ${duration}s linear infinite`;
+                
+                // Добавляем анимацию падения
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes fall {
+                        to {
+                            transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                snowflakesContainer.appendChild(snowflake);
+            }
+        }
+        
+        // Создание мигающих огоньков на елке
+        function createTreeLights() {
+            const tree = document.querySelector('.tree');
+            const lightCount = 15;
+            
+            for (let i = 0; i < lightCount; i++) {
+                const light = document.createElement('div');
+                light.classList.add('tree-light');
+                
+                // Случайная позиция на елке
+                const left = Math.random() * 80 + 10;
+                const top = Math.random() * 170 + 10;
+                
+                light.style.position = 'absolute';
+                light.style.width = '8px';
+                light.style.height = '8px';
+                light.style.borderRadius = '50%';
+                light.style.left = `${left}%`;
+                light.style.top = `${top}px`;
+                
+                // Случайный цвет огонька
+                const colors = ['#FF5252', '#FFD740', '#4CAF50', '#2196F3', '#E040FB'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                light.style.backgroundColor = color;
+                light.style.boxShadow = `0 0 8px ${color}`;
+                
+                // Мигающая анимация
+                const delay = Math.random() * 2;
+                light.style.animation = `blink 1.5s ${delay}s infinite alternate`;
+                
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes blink {
+                        from { opacity: 0.3; }
+                        to { opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                tree.appendChild(light);
+            }
+        }
+        
+        // Запуск анимаций после загрузки страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            createSnowflakes();
+            createTreeLights();
+            
+            // Анимация плавающих украшений
+            const ornaments = document.querySelectorAll('.ornament');
+            ornaments.forEach((ornament, index) => {
+                ornament.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite`;
+            });
+        });
+    </script>
+</body>
+</html>
